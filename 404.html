@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Qasly Labs</title>
+    
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: radial-gradient(circle at center, #111827, #000000);
+            color: #e5e7eb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+            animation: fadeInSlow 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes fadeInSlow {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: -0.05em;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .error-message {
+            font-size: 1.125rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-button::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #e5e7eb;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .back-button:hover::before {
+            width: 100%;
+        }
+        
+        .labs-brand {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .labs-brand:hover {
+            color: #9ca3af;
+        }
+        
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #9ca3af;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+            }
+            
+            .labs-brand {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- Qasly Labs Brand -->
+    <a href="/" class="labs-brand">Qasly Labs</a>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+        </p>
+        <a href="/" class="back-button">Return Home</a>
+    </div>
+    
+    <script>
+        // Create starfield effect
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Initialize starfield
+        createStarfield();
+        
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('.back-button');
+            
+            backButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            
+            backButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html> 
